@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage/HomePage";
+import Header from "./components/Header/Header";
+import Coins from "./components/Coins/Coins";
+import Contact from "./components/Contact/Contact";
+import About from "./components/About/About";
+import Footer from "./components/Footer/Footer";
+import CoinDetail from "./components/CoinDetail/CoinDetail";
+import BdAddress from "./components/Contact/BdAddress";
+import UsAddress from "./components/Contact/UsAddress";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Header />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/coins" element={<Coins />} />
+                <Route path="/coin-detail/:id" element={<CoinDetail />} />
+                <Route path="/contact" element={<Contact />}>
+                    <Route path="bd-address" element={<BdAddress />} />
+                    <Route path="us-address" element={<UsAddress />} />
+                </Route>
+                <Route path="/about" element={<About />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
